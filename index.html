@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="styles.css">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  </head>
+  <body>
+  
+<div id="mydiv"> A.society </div>
+    
+  <ul>
+  <li><a href="index.html">Home</a></li>
+  <li><a href="suggestions.html">Suggestions</a></li>
+  </ul>
+    
+    <form onSubmit= "displayHeading()" id= "form0">
+      add a heading: <input type="text" id="text0"/>
+      <input type= "submit"/>
+    </form>
+    
+    <div id= "divheading"> 
+    </div>
+    
+    <div id= "addcategory"> 
+    <form onSubmit= "getCategory()" id= "form1">
+      add category: <input type= "text" id= "text1"/>
+      <input type= "submit"/>
+    </form>
+    <p> When you add new categories, it will appear in a box below. Wait for a day or two and we will add the site of sites for the new category. </p>
+    </div>
+    <div id= "container"> 
+    </div>
+
+    <script>
+      
+    function displayHeading() {
+      localStorage.setItem("heading", document.getElementById('text0').value);
+      //const pershead = document.createElement("div");
+      //const header = document.getElementById("form0");
+      //header.append(pershead);
+      getHeading();
+    }
+    
+    window.onload = function getHeading() {
+      event.preventDefault();
+      const heading = document.getElementById("divheading");
+      heading.innerText = localStorage.getItem("heading");
+    }
+    
+    function getCategory(){
+      var categories = JSON.parse(localStorage.getItem('category')) || [];
+      // add to it,
+      categories.push(document.getElementById("text1").value)
+      localStorage.setItem("category", JSON.stringify(categories));
+      addCategory();
+    }
+    
+    window.onload = function addCategory() {
+      event.preventDefault();
+      const categorylist = JSON.parse(localStorage.getItem("category"));
+      i = Number(0);
+      categorylist.forEach(function(categoryname){
+        const div = document.createElement("div");
+        var a = document.createElement("a");
+        div.id = "categorydiv";
+        
+        //create link to new html page 
+        var htmlContent = ["<html> hello world! </html>"];
+        var bl = new Blob(htmlContent, {type: "text/html"});
+        a.href = URL.createObjectURL(bl);
+        //a.href = URL.createObjectURL("category" +Number(i) + ".html");
+        a.href = "category" +Number(i) + ".html"
+        //a.download= "category" + Number(i) +".html";
+        i += 1;
+        //a.click();
+        
+        
+        const container = document.getElementById("container");
+        container.insertAdjacentElement('afterbegin', div);
+        div.appendChild(a)
+        a.innerText= categoryname;
+        //div.innerText = categoryname;
+    })}
+      
+    </script>
+
+  </body>
+</html>

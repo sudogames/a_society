@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+  
+  <h1> News </h1>
+  
+    <ul>
+  <li><a href="index.html">Home</a></li>
+  <li><a href="suggestions.html">Suggestions</a></li>
+  </ul>
+  
+  <form onSubmit= "addSite()" id= "form1">
+      <input type = "text" id = "siteurl"/>
+      <input type= "submit"/>
+    </form>
+    
+    <div id = "divsites"></div>
+  
+  <script>
+  
+  //CODE FOR ADDING ADDITIONAL ELEMENTS FROM TEXT SUBMISSION!!
+  
+  function addSite(){
+    var sites = JSON.parse(localStorage.getItem('sites')) || [];
+    // add to it,
+      sites.push(document.getElementById("siteurl").value)
+      localStorage.setItem("sites", JSON.stringify(sites));
+      displaySite();
+    }
+    
+    window.onload = function displaySite() {
+      event.preventDefault();
+      const siteslist = JSON.parse(localStorage.getItem("sites"));
+      const divsites= document.getElementById("divsites");
+      siteslist.forEach(function(site) {
+        const ifrm = document.createElement("iframe");
+        ifrm.setAttribute("src", site);
+        ifrm.style.width = "500px";
+        ifrm.style.height = "500px";
+        divsites.insertAdjacentElement("afterbegin", ifrm); 
+      }) 
+    }
+    </script>
+  
+   </body>
+</html>

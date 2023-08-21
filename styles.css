@@ -1,0 +1,76 @@
+h1 {text-align: center}
+
+body {
+  background-color: black;
+  color: pink;
+  font-size: 20px
+}
+
+a {color: black}
+
+ul {
+  list-style-type: none;
+  margin: 10;
+  padding: 10;
+  background-color: white;
+  text-decoration: none
+  
+}
+
+li {
+  display: inline;
+}
+
+.active {background-color: red;}
+
+#mydiv {
+  text-align: center;
+  font-size: 50px;
+  font-weight: bold;}
+  
+#divheading {
+  height: 150px;
+}
+
+/* category */
+
+#divsite {
+  height: 150px;
+}
+
+
+
+#framesite {
+  position: relative;
+  top: 50px;
+  left: 90px;
+  text-align: center;
+}
+
+#categorydiv {
+  height: 200px;
+  width: 250px;
+  background-color: #40E0D0;
+  float: left;
+  margin-top: 50px;
+  margin-left: 15px;
+  border: 2px solid black;
+  border-radius: 150px;
+  color: white;
+  text-align: center;
+  padding: 30px;
+}
+
+/*#categorytitle {
+  position: relative;
+  top: 0px;
+  left: 0px;
+  margin: 75px;
+}
+
+#categories {
+  top: 500;
+  left: 500;
+}*/
+
+
